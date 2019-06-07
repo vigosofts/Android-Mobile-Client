@@ -11,12 +11,15 @@
         <item name="buttonStyle">@style/RobotoButtonStyle</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="alertDialogTheme">@style/AlertDialogStyle</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>

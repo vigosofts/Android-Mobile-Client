@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        handler = new Handler();
+      /*  handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         startHandler(); //will start the timer.
-
+*/
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
         String ln = prefs.getString("Language","");
@@ -203,7 +203,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @Override
+  /*  @Override
     public void onUserInteraction() {
         super.onUserInteraction();
         stopHandler();  //first stop the timer and then again start it
