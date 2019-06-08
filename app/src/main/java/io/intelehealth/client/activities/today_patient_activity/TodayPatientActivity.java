@@ -166,12 +166,12 @@ public class TodayPatientActivity extends AppCompatActivity {
         checkBox.setText("Text to the right of the check box.");*/
 
         final String[] creator_names = {"Creator 1", "Creator 2", "Creator 3"};
-        boolean[] checkedItems = {false, false, false};
+        //boolean[] checkedItems = {false, false, false};
         // ngo_numbers = getResources().getStringArray(R.array.ngo_numbers);
         dialogBuilder = new AlertDialog.Builder(TodayPatientActivity.this);
         dialogBuilder.setTitle("Filter by Creator");
 
-        dialogBuilder.setMultiChoiceItems(creator_names, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+        dialogBuilder.setMultiChoiceItems(creator_names, null, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
 
