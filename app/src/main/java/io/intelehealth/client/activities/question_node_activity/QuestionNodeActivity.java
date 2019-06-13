@@ -70,6 +70,7 @@ public class QuestionNodeActivity extends AppCompatActivity {
     ExpandableListView questionListView;
     String mFileName = "knowledge.json"; //knowledge engine file
     //    String mFileName = "DemoBrain.json";
+
     int complaintNumber = 0; //assuming there is at least one complaint, starting complaint number
     HashMap<String, String> complaintDetails; //temporary storage of complaint findings
     ArrayList<String> complaints; //list of complaints going to be used
@@ -251,15 +252,7 @@ public class QuestionNodeActivity extends AppCompatActivity {
      * All exams are also stored into a string, which will be passed through the activities to the Physical Exam Activity.
      */
     private void fabClick() {
-//        for (int i = 0; i < adapter.getGroupCount(); i++) {
-//            if (!currentNode.getOption(i).isSelected()) {
-//                nodeComplete = false;
-//                questionListView.expandGroup(i);
-//                break;
-//            } else {
-//                nodeComplete = true;
-//            }
-//        }
+
         nodeComplete = true;
 
         if (!complaintConfirmed) {
@@ -267,12 +260,7 @@ public class QuestionNodeActivity extends AppCompatActivity {
         } else {
 
             //TODO: Under this new scheme where there is just a list of existing JSONS, need to parse out associated symptomsArrayList<String> selectedAssociations = currentNode.getSelectedAssociations();
-//            for (int i = 0; i < selectedAssociations.size(); i++) {
-//                if (!complaints.contains(selectedAssociations.get(i))) {
-//                    complaints.add(selectedAssociations.get(i));
-//                    complaintsNodes.add(mKnowledge.getComplaint(selectedAssociations.get(i)));
-//                }
-//            }
+
 
             List<String> imagePathList = currentNode.getImagePathList();
 

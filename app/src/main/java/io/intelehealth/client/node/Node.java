@@ -1468,21 +1468,6 @@ public class Node implements Serializable {
 
 
 
-   /* public ArrayList<String> getPhysicalExams() {
-        ArrayList<String> selectedAssociations = new ArrayList<>();
-        List<Node> mOptions = optionsList;
-        for (int i = 0; i < mOptions.size(); i++) {
-            if (mOptions.get(i).isSelected() & mOptions.get(i).hasAssociations()) {
-                selectedAssociations.add(mOptions.get(i).getAssociatedComplaint());
-                if (!mOptions.get(i).isTerminal()) {
-                    selectedAssociations.addAll(mOptions.get(i).getSelectedAssociations());
-                }
-            }
-        }
-        return selectedAssociations;
-    }
-    */
-
     public String getPhysicalExams() {
         return physicalExams;
     }

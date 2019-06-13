@@ -193,9 +193,7 @@ public class PatientDetailActivity extends AppCompatActivity {
                 }
                 cursor1.close();
 
-                // Will display data for patient as it is present in database
-                // Toast.makeText(PatientDetailActivity.this,"PMH: "+phistory,Toast.LENGTH_SHORT).sƒhow();
-                // Toast.makeText(PatientDetailActivity.this,"FH: "+fhistory,Toast.LENGTH_SHORT).show();
+
 
                 Intent intent2 = new Intent(PatientDetailActivity.this, VitalsActivity.class);
                 String fullName = patient.getFirstName() + " " + patient.getLastName();
@@ -601,9 +599,6 @@ public class PatientDetailActivity extends AppCompatActivity {
      * @return void
      */
     private void createOldVisit(final String datetime, int visit_id, String end_datetime,String visitValue) throws ParseException {
-        // final LayoutInflater inflater = PatientDetailActivity.this.getLayoutInflater();
-        //  View convertView = inflater.inflate(R.layout.list_item_previous_visit, null);
-        //  TextView textView = (TextView) convertView.findViewById(R.id.textView_visit_info);
 
         final Boolean past_visit;
         final TextView textView = new TextView(this);
@@ -680,30 +675,6 @@ public class PatientDetailActivity extends AppCompatActivity {
         textView.setLayoutParams(llp);
         textView.setTag(visit_id);
 
-//        previousVisitsList.addView(textView);
-       /* textView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        Toast.makeText(PatientDetailActivity.this,"Touch Down",Toast.LENGTH_SHORT).show();
-                        v.getParent().getParent().getParent()
-                                .requestDisallowInterceptTouchEvent(true);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        Toast.makeText(PatientDetailActivity.this,"Touch Up",Toast.LENGTH_SHORT).show();
-                        v.getParent().getParent()
-                                .requestDisallowInterceptTouchEvent(false);
-
-                        break;
-                }
-                return true;
-            }
-        });*/
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

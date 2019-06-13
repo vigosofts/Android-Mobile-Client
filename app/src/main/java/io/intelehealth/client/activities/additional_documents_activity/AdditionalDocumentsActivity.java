@@ -106,11 +106,7 @@ public class AdditionalDocumentsActivity extends AppCompatActivity {
             }
         }
     }
-    // File base_dir = new File(filePath);
-    //File files[] = base_dir.listFiles();
-    //for (File file : files)
 
-    // }
 
 
     private void updateImageDatabase(String imagePath) {

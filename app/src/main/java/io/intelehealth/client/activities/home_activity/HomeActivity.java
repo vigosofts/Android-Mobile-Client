@@ -175,11 +175,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        /*
-        if (getIntent().hasExtra("login") && getIntent().
-                getBooleanExtra("login", false) == true) {
-            parseLoginValidation();
-        }*/
 
         /*handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -392,50 +387,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    //Archiving 477 -Login Validation by Parse
-    /*
-    private void parseLoginValidation() {
-        if (NetworkConnection.isOnline(this)) {
-            ParseObject register_login = new ParseObject("Login");
-            register_login.put("userId", sharedPreferences.getString("creatorid", null));
-            register_login.put("location", sharedPreferences.getString(SettingsActivity.KEY_PREF_LOCATION_NAME, null));
-            String aid = IntelehealthApplication.getAndroidId();
-            register_login.put("deviceId",aid);
-            try {
-                register_login.save();
-                Toast.makeText(this, getString(R.string.user_login_check_success), Toast.LENGTH_SHORT).show();
-            } catch (ParseException e1) {
-                switch (e1.getCode()) {
-                    case 401:{
-                        Toast.makeText(this, getString(R.string.user_logged_in_other_device), Toast.LENGTH_SHORT).show();
-                        logout();
-                        break;
-                    }
-                    case 208: {
-                        Toast.makeText(this, getString(R.string.user_logged_in), Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    case 403: {
-                        Toast.makeText(this, getString(R.string.user_login_error), Toast.LENGTH_LONG).show();
-                        logout();
-                        break;
-                    }
-                    case 400: {
-                        Toast.makeText(this, e1.getMessage(), Toast.LENGTH_SHORT).show();
-                        logout();
-                        break;
-                    }
-                    default: {
-                        Toast.makeText(this, e1.getMessage(), Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                }
-            }
-        } else {
-            Toast.makeText(this, getString(R.string.user_server_unreachable), Toast.LENGTH_SHORT).show();
-        }
-    }
-    */
+
 
     private void parseLogOut() {
         if (NetworkConnection.isOnline(this)) {

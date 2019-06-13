@@ -516,14 +516,7 @@ try {
             }
         });
 
-        //Check to see if the permission was given to take pictures.
-        /*if (ContextCompat.checkSelfPermission(IdentificationActivity.this,
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(IdentificationActivity.this,
-                    new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
-        }*/
 
         //When either button is clicked, that information needs to be stored.
         mGenderF.setOnClickListener(new View.OnClickListener() {
@@ -791,25 +784,6 @@ try {
         }
 
 
-//prajwal
-     /* if (mDOBYear.toString().equals("") && mDOBMonth.toString().equals("") && mDOBDay.toString().equals("")) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(IdentificationActivity.this);
-            alertDialogBuilder.setMessage("Enter year nd month prajwal");
-            alertDialogBuilder.setNeutralButton(R.string.generic_ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            AlertDialog alertDialog = alertDialogBuilder.create();
-
-            mDOBPicker.show();
-            alertDialog.show();
-            return;
-        }
-*/
-
-//praj
 
 
         ArrayList<EditText> values = new ArrayList<>();
@@ -825,17 +799,7 @@ try {
         values.add(mRelationship);
         values.add(mOccupation);
 
-     /* for (int i = 0; i < values.size(); i++) {
-            EditText et = values.get(i);
-            if (TextUtils.isEmpty(et.getText().toString()) && et.getTag() == null) {
-                et.setError("Prajwal here");
-                focusView = et;
-                cancel = true;
-                return;
-            } else {
-                et.setError(null);
-            }
-        }*/
+
 
         if (!mGenderF.isChecked() && !mGenderM.isChecked()) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(IdentificationActivity.this);
@@ -851,13 +815,7 @@ try {
             return;
         }
 
-        //prajw
 
-
-        // prajw
-
-
-        //prajwal
         if (!mFirstName.getText().toString().equals("") && !mLastName.getText().toString().equals("")
                 && !mCity.getText().toString().equals("") && !countryText.getText().toString().equals("") &&
                 !stateText.getText().toString().equals("") && !mDOB.getText().toString().equals("") && !mAge.getText().toString().equals("")) {
@@ -912,7 +870,6 @@ try {
             return;
         }
 
-        //end prajwal
 
 
         if (mCountry.getSelectedItemPosition() == 0) {

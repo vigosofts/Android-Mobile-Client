@@ -185,10 +185,5 @@ public class EmergencyEncounter {
         return success;
     }
 
-//    private void createNotification(String message) {
-//        mBuilder.setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentTitle("Visit Data Update")
-//                .setContentText(message);
-//        mNotifyManager.notify(mId, mBuilder.build());
-//    }
+
 }

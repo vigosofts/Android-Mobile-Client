@@ -186,56 +186,7 @@ public class ImageUploadService extends IntentService {
             removeJobFromQueue(queueId);
         }
     }
-    //meera
-   /* public void uploadImage(String classname, Bitmap bitmap, final String imageName, final Intent intent, final String imagePath) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] image = stream.toByteArray();
-        final ParseFile file = new ParseFile(imageName, image);
-        final ParseObject imgupload = new ParseObject(classname);
-        imgupload.put("Image", file);
-        imgupload.put("PatientID", patientUUID);
-        imgupload.put("VisitID", visitUUID);
 
-        file.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-
-            }
-        }, new ProgressCallback() {
-            @Override
-            public void done(Integer percentDone) {
-                String newText = "Image Uploading - "+percentDone+"%";
-                mBuilder.setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle(newText)
-                        .setContentText(newText);
-                mBuilder.setProgress(100,percentDone, false);
-                mNotifyManager.notify(mId, mBuilder.build());
-                Log.i(TAG, "done: " + percentDone);
-            }
-        });
-        imgupload.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(com.parse.ParseException e) {
-                if (e == null) {
-                    String newText = "Visit Image Posted successfully.";
-                    mBuilder.setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle("Image Upload")
-                            .setContentText(newText);
-                    mNotifyManager.notify(mId, mBuilder.build());
-                    removeJobFromQueue(queueId);
-                    updateImageDatabase(imagePath, imgupload.getObjectId());
-                } else {
-                    String newText = "Failed to Post Images.";
-                    mBuilder.setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle("Image Upload")
-                            .setContentText(newText);
-                    mNotifyManager.notify(mId, mBuilder.build());
-                }
-            }
-        });
-    }*/
-//meera
     public void uploadImage(String classname, Bitmap bitmap, final String imageName, final Intent intent, final String imagePath) {
         queueSyncStart(queueId);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

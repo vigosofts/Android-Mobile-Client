@@ -77,8 +77,6 @@ public class IntelehealthApplication extends MultiDexApplication implements Appl
         localdb.execSQL("UPDATE "+DelayedJobQueueProvider.DELAYED_JOBS_TABLE_NAME +" SET "+ DelayedJobQueueProvider.SYNC_STATUS+"=0");
 
 
-
-
         registerActivityLifecycleCallbacks(this);
     }
 

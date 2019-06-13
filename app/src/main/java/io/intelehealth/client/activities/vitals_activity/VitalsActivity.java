@@ -104,7 +104,6 @@ public class VitalsActivity extends AppCompatActivity {
             intentTag = intent.getStringExtra("tag");
             //    physicalExams = intent.getStringArrayListExtra("exams"); //Pass it along
 
-
 //            Log.v(TAG, "Patient ID: " + patientID);
 //            Log.v(TAG, "Visit ID: " + visitID);
 //            Log.v(TAG, "Patient Name: " + patientName);

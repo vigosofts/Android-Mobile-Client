@@ -268,15 +268,6 @@ public class PhysicalExamActivity extends AppCompatActivity {
                 } else {
                     questionsMissing();
                 }
-//                    Node genExams = physicalExamMap.getOption(0);
-//                    for (int i = 0; i < genExams.getOptionsList().size(); i++) {
-////                        Log.d(TAG, "current i value " + i);
-//                        if(!genExams.getOption(i).anySubSelected()){
-////                            Log.d(TAG, genExams.getOption(i).getText());
-//                            mViewPager.setCurrentItem(i);
-//                            return;
-//                        }
-//                    }
 
             }
         });
@@ -325,8 +316,7 @@ public class PhysicalExamActivity extends AppCompatActivity {
             final ImageView imageView = (ImageView) rootView.findViewById(R.id.physical_exam_image_view);
             TextView textView = (TextView) rootView.findViewById(R.id.physical_exam_text_view);
             ExpandableListView expandableListView = (ExpandableListView) rootView.findViewById(R.id.physical_exam_expandable_list_view);
-            //ListView listView = (ListView) rootView.findViewById(R.id.physical_exam_list_view);
-            //VideoView videoView = (VideoView) rootView.findViewById(R.id.physical_exam_video_view);
+
 
             int viewNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             final Integer patientID = getArguments().getInt("PATIENT_ID");

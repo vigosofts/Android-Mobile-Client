@@ -262,8 +262,7 @@ public class VisitSummaryActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //do nothing
-        //Use the buttons on the screen to navigate
+
     }
 
 
@@ -408,11 +407,7 @@ sessionManager=new SessionManager(getApplicationContext());
             }
             cursor.close();
         }
-//        VisitSummaryDAO visitSummarydao = new VisitSummaryDAO();
-//        visitUUID= visitSummarydao.getVisitUUID(visitID,db);
-//        if(!visitUUID.isEmpty()){
-//            flag.setEnabled(false);
-//        }
+
         flag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
@@ -773,7 +768,6 @@ sessionManager=new SessionManager(getApplicationContext());
                 intent1.putExtra("patientID", patientID);
                 intent1.putExtra("visitID", visitID);
                 intent1.putExtra("name", patientName);
-                //   intent.putStringArrayListExtra("exams", physicalExams);
                 intent1.putExtra("tag", "edit");
                 startActivity(intent1);
             }
@@ -1411,36 +1405,6 @@ sessionManager=new SessionManager(getApplicationContext());
         }
     }
 
-   /*private void checkForDoctor(){
-        String providerUUID = "";
-        String dbDoctorName = "";
-        String[] columns = {"creator"};
-        String selection = "patient_id = ? AND visit_id = ?";
-        String[] args = {String.valueOf(patientID), visitID};
-        String orderBy = "visit_id";
-        Cursor cursor = db.query("obs", columns, selection, args, null, null, orderBy);
-        if (cursor.moveToLast()) {
-            providerUUID = cursor.getString(cursor.getColumnIndex("creator"));
-        }
-        cursor.close();
-
-        String[] newCol = {"name"};
-        selection = "openmrs_user_uuid = ?";
-        String[] newArg = {providerUUID};
-       orderBy = "openmrs_user_uuid";
-        cursor = db.query("providers", newCol, selection, newArg, null, null, orderBy);
-        if (cursor.moveToFirst()) {
-            dbDoctorName = cursor.getString(cursor.getColumnIndex("name"));
-        }
-        cursor.close();
-
-       doctorName = dbDoctorName;
-       mDoctorName.setText(doctorName);
-        if (mDoctorTitle.getVisibility() != View.VISIBLE) {
-            mDoctorTitle.setVisibility(View.VISIBLE);
-            mDoctorName.setVisibility(View.VISIBLE);
-        }
-    }*/
 
     private String stringToWeb(String input) {
         String formatted = "";
@@ -1532,17 +1496,7 @@ sessionManager=new SessionManager(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        if (temperature.getValue() != null) {
-//            if (Integer.parseInt(temperature.getValue()) > 80) {
-//                mTemp = "Temperature(F): " + temperature.getValue();
-//            } else {
-//                mTemp = "Temperature(C): " + temperature.getValue();
-//            }
-//        }else{
-//            mTemp="";
-//        }
 
-//        mTemp = temperature.getValue();
 
         mresp = resp.getValue();
         mSPO2 = "SpO2(%): "+spO2.getValue();
@@ -2003,18 +1957,6 @@ sessionManager=new SessionManager(getApplicationContext());
 //                    <-----if obs not found restrict user to end the visit ----->
             else {
                 Log.i(TAG, "found sothing for test");
-           /* downloaded=false;
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage(R.string.error_no_data);
-                alertDialogBuilder.setNeutralButton(R.string.generic_ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();*/
-
             }
 
         }
@@ -2027,21 +1969,6 @@ sessionManager=new SessionManager(getApplicationContext());
         if (!downloadButton.isEnabled()) {
             downloadButton.setEnabled(true);
             downloadButton.setVisibility(View.VISIBLE);
-            /*
-            final float scale = getResources().getDisplayMetrics().density;
-            int pixels = (int) (11 * scale + 0.5f);
-
-            downloadButton = new Button((new ContextThemeWrapper(context, R.style.RobotoButtonStyle)));
-            LinearLayoutCompat.LayoutParams layoutParams= new LinearLayoutCompat.LayoutParams(
-                    LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(10,10,10,10);
-            downloadButton.setPadding(0,0,0,0);
-            downloadButton.setLayoutParams(layoutParams);
-            downloadButton.setAllCaps(false);
-            downloadButton.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-            downloadButton.setBackgroundColor(getResources().getColor(R.color.divider));
-            downloadButton.setText(R.string.visit_summary_button_download);
-            */
 
             // Toast.makeText(this, getString(R.string.visit_summary_button_download), Toast.LENGTH_SHORT).show();
 

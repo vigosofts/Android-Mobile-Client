@@ -316,9 +316,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             Configuration conf = res.getConfiguration();
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
-            //Intent refresh = new Intent(this, HomeActivity.class);
-            //finish();
-            // startActivity(refresh);
         }
 
 
@@ -402,10 +399,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
     }
-
-
-
-    //prajwal end
 
 
 

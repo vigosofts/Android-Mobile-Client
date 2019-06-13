@@ -322,8 +322,6 @@ public class FamilyHistoryActivity extends AppCompatActivity {
                 // pmh.insertDb(phistory);
 
                 // this will display history data as it is present in database
-                // Toast.makeText(FamilyHistoryActivity.this,"new PMH: "+phistory,Toast.LENGTH_SHORT).show();
-                // Toast.makeText(FamilyHistoryActivity.this,"new FH: "+fhistory,Toast.LENGTH_SHORT).show();
             } else {
                 insertDb(insertion); // new details of family history
             }

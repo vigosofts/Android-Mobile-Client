@@ -257,15 +257,7 @@ public class PhysicalExam extends Node {
 
         for (int i = 0; i < stringsList.size(); i++) {
             mLanguage = mLanguage.concat(stringsList.get(i) + languageSeparator);
-//            if (i == 0) {
-//                if (!stringsList.get(i).isEmpty()) {
-//                    mLanguage = mLanguage.concat(stringsList.get(i));
-//                }
-//            } else {
-//                if (!stringsList.get(i).isEmpty()) {
-//                    mLanguage = mLanguage.concat(languageSeparator + stringsList.get(i));
-//                }
-//            }
+
         }
 
 //        mLanguage = removeCharsFindings(mLanguage);
