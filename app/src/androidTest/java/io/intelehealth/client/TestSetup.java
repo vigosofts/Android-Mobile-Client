@@ -88,9 +88,9 @@ public class TestSetup {
         onView(withId(R.id.editText_URL))
                 .perform(typeText(mServerIp), pressImeActionButton());
 
-        onView(withId(R.id.editText_prefix))
-                .perform(click())
-                .perform(typeText(mPrefix), pressImeActionButton());
+       // onView(withId(R.id.editText_prefix))
+         //       .perform(click())
+           //     .perform(typeText(mPrefix), pressImeActionButton());
 
         onView(withId(R.id.email))
                 .perform(scrollTo(), typeText(mUserName), pressImeActionButton());
