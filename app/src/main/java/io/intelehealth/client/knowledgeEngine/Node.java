@@ -324,9 +324,10 @@ public class Node implements Serializable {
             language = language.replace("_", newText);
             //Log.d("Node", language);
         } else {
-            language = language + " " + newText;
-            //Log.d("Node", language);
+            language = newText;
+            Log.d("Node", language);
         }
+
     }
 
     public String findDisplay() {
@@ -970,6 +971,7 @@ public class Node implements Serializable {
         final AlertDialog.Builder textInput = new AlertDialog.Builder(context);
         textInput.setTitle(R.string.question_text_input);
         final EditText dialogEditText = new EditText(context);
+        dialogEditText.getText().clear();
         dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         textInput.setView(dialogEditText);
         textInput.setPositiveButton(R.string.generic_ok, new DialogInterface.OnClickListener() {
@@ -982,6 +984,7 @@ public class Node implements Serializable {
                     //knowledgeEngine.setText(knowledgeEngine.getLanguage());
                 }
                 node.setSelected();
+
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
