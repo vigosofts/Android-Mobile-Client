@@ -44,6 +44,7 @@ public class SessionManager {
     private static final String EXAM = "exam_";
     private static final String MIGRATION_KEY = "migrationkey";
     private static final String TRIGGER_NOTI = "TRIGGER_NOTI";
+    private static final String IS_TELE_REQUIRED = "IS_TELE_REQUIRED";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -192,6 +193,15 @@ public class SessionManager {
 
     public void setTriggerNoti(String flag) {
         editor.putString(TRIGGER_NOTI, flag);
+        editor.commit();
+    }
+
+    public String getISTELEREQUIRED() {
+        return pref.getString(IS_TELE_REQUIRED, "No");
+    }
+
+    public void setISTELEREQUIRED(String flag) {
+        editor.putString(IS_TELE_REQUIRED, flag);
         editor.commit();
     }
 

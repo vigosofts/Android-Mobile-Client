@@ -1,6 +1,7 @@
 {
   "id": "ID_983435415",
   "text": "Sick child (under 5years)",
+  "tele_required":"Yes",
   "perform-physical-exam": "Sick Child:Lethargy;Sick Child:Fast Breathing;Sick Child:Stridor;Sick Child:Chest indrawing;Physical Growth:MUAC;",
   "display-or": "ଅସୁସ୍ଥ ପିଲା (୫ ବର୍ଷ ରୁ କମ )",
   "options": [

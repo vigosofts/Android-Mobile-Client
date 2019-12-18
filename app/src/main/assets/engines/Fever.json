@@ -1,6 +1,7 @@
 {
   "id": "ID_303783560",
   "text": "Fever",
+  "tele_required":"No",
   "perform-physical-exam": "Mouth:Back of throat (redness, swelling);Any Location:Skin Rash;Any Location:Ulcer;Abdomen:Tenderness;",
   "display-or": "ଜ୍ୱର",
   "options": [

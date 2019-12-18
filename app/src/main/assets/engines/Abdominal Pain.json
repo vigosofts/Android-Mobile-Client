@@ -1,6 +1,7 @@
 {
   "id": "ID_1000991358",
   "text": "Abdominal Pain",
+  "tele_required": "Yes",
   "perform-physical-exam": "Abdomen:Scars;Abdomen:Distension;Abdomen:Tenderness;Abdomen:Lumps;Physical Growth:Sexual Maturation;",
   "display-or": "ପେଟଯନ୍ତ୍ରଣା",
   "options": [

@@ -1,6 +1,7 @@
 {
   "id": "ID_1609227579",
   "text": "Diarrhea",
+  "tele_required":"No",
   "perform-physical-exam": "Arm:Lying BP;Mouth:Tongue Dryness;Abdomen:Tenderness;Abdomen:Lumps;",
   "display-or": "ପତଳା ଝାଡ଼ା",
   "options": [

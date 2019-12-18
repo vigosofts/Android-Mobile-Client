@@ -1,6 +1,7 @@
 {
   "id": "ID_844006222",
   "text": "Back & Neck pain",
+  "tele_required":"No",
   "perform-physical-exam": "Leg:Movement;Leg:Strength;Back:Deformity;Back:Tenderness;Back:Redness;Back:Swelling;Back:Movement;",
   "display-or": "ପିଠି ଓ ବେକ ଯନ୍ତ୍ରଣା",
   "options": [

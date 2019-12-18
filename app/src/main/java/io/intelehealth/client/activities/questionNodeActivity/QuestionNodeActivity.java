@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -85,6 +86,8 @@ public class QuestionNodeActivity extends AppCompatActivity {
     private JSONArray assoSympArr = new JSONArray();
     private JSONObject finalAssoSympObj = new JSONObject();
 
+    private String IsTeleconsultationReq = "No";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManager = new SessionManager(this);
@@ -114,12 +117,20 @@ public class QuestionNodeActivity extends AppCompatActivity {
             if (hasLicense) {
                 try {
                     currentFile = new JSONObject(FileUtils.readFile(complaints.get(i) + ".json", this));
+
+                    checkIsTeleReq(currentFile.getString("tele_required"));
                 } catch (JSONException e) {
                     Crashlytics.getInstance().core.logException(e);
                 }
             } else {
                 String fileLocation = "engines/" + complaints.get(i) + ".json";
                 currentFile = FileUtils.encodeJSON(this, fileLocation);
+
+                try {
+                    checkIsTeleReq(currentFile.getString("tele_required"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             Node currentNode = new Node(currentFile);
             complaintsNodes.add(currentNode);
@@ -169,6 +180,13 @@ public class QuestionNodeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkIsTeleReq(String flag) {
+        if (flag.equalsIgnoreCase("Yes")) {
+            IsTeleconsultationReq = flag;
+            sessionManager.setISTELEREQUIRED(IsTeleconsultationReq);
+        }
     }
 
     public void onListClicked(View v, int groupPosition, int childPosition) {
@@ -250,6 +268,8 @@ public class QuestionNodeActivity extends AppCompatActivity {
      */
     private void fabClick() {
         nodeComplete = true;
+
+        Toast.makeText(this, "" + sessionManager.getISTELEREQUIRED(), Toast.LENGTH_LONG).show();
 
         if (!complaintConfirmed) {
             questionsMissing();
