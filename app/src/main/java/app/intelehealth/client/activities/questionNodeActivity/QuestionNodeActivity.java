@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -75,6 +78,9 @@ public class QuestionNodeActivity extends AppCompatActivity {
     int lastExpandedPosition = -1;
     String insertion = "";
     private SharedPreferences prefs;
+    TextView title;
+    TextView subtitle;
+    Toolbar toolbar;
     private String encounterVitals;
     private String encounterAdultIntials;
 
@@ -126,9 +132,11 @@ public class QuestionNodeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_node);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+         toolbar = findViewById(R.id.custom_toolbar);
+         title=findViewById(R.id.custom_title);
+         subtitle=findViewById(R.id.custom_subtitle);
+
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         questionListView = findViewById(R.id.complaint_question_expandable_list_view);
 
@@ -137,6 +145,7 @@ public class QuestionNodeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 fabClick();
             }
         });
@@ -427,7 +436,18 @@ public class QuestionNodeActivity extends AppCompatActivity {
         questionListView.setAdapter(adapter);
         questionListView.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE);
         questionListView.expandGroup(0);
-        setTitle(patientName + ": " + currentNode.findDisplay());
+
+        title.setText(patientName);
+        subtitle.setText(currentNode.findDisplay());
+
+
+        setSupportActionBar(toolbar);
+       // ActionBar actionBar = getSupportActionBar();
+        //getSupportActionBar().setIcon(R.drawable.ic_question_indicator);
+        //actionBar.setTitle(patientName);
+        //actionBar.setSubtitle(currentNode.findDisplay());
+
+        //setTitle(patientName + ": " + currentNode.findDisplay());
 
     }
 

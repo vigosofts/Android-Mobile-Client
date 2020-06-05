@@ -162,15 +162,19 @@ public class PhysicalExamActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physical_exam);
-        setTitle(getString(R.string.title_activity_physical_exam));
+        //setTitle(getString(R.string.title_activity_physical_exam));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.custom_toolbar);
+        TextView title=findViewById(R.id.custom_title);
+        TextView subTitle=findViewById(R.id.custom_subtitle);
+
+        title.setText(patientName);
+        subTitle.setText(getTitle());
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
 
-        setTitle(patientName + ": " + getTitle());
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), physicalExamMap);

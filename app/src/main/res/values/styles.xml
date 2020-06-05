@@ -46,6 +46,10 @@
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
+    <style name="CustomeToolBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
     <style name="SelectableItemTheme">
         <item name="colorControlHighlight">#5677FC</item>
     </style>

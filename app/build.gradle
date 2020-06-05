@@ -102,6 +102,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:16.0.7"
     implementation "com.google.firebase:firebase-messaging:17.3.4"
     implementation 'com.google.firebase:firebase-crash:16.2.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 //    implementation('com.github.SandroMachado:restaurant:0.2.0@aar') {
 //        transitive = true
