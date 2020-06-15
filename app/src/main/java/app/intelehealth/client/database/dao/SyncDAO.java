@@ -179,7 +179,8 @@ public class SyncDAO {
         sessionManager = new SessionManager(context);
         String encoded = sessionManager.getEncoded();
         String oldDate = sessionManager.getPullExcutedTime();
-        String url = "http://" + sessionManager.getServerUrl() + "/EMR-Middleware/webapi/pull/pulldata/" + sessionManager.getLocationUuid() + "/" + sessionManager.getPullExcutedTime();
+        //String url = "http://" + sessionManager.getServerUrl() + "/EMR-Middleware/webapi/pull/pulldata/" + sessionManager.getLocationUuid() + "/" + sessionManager.getPullExcutedTime();
+        String url = "http://" + sessionManager.getServerUrl() + ":89/pulldata" ;
         Call<ResponseDTO> middleWarePullResponseCall = AppConstants.apiInterface.RESPONSE_DTO_CALL(url, "Basic " + encoded);
         Logger.logD("Start pull request", "Started");
         middleWarePullResponseCall.enqueue(new Callback<ResponseDTO>() {
@@ -342,7 +343,8 @@ public class SyncDAO {
         Gson gson = new Gson();
         Logger.logD(TAG, "push request model" + gson.toJson(pushRequestApiCall));
         Log.e(TAG, "push request model" + gson.toJson(pushRequestApiCall));
-        String url = "http://" + sessionManager.getServerUrl() + "/EMR-Middleware/webapi/push/pushdata";
+       // String url = "http://" + sessionManager.getServerUrl() + "/EMR-Middleware/webapi/push/pushdata";
+        String url = "http://" + sessionManager.getServerUrl() + ":89/pushdata";
 //        push only happen if any one data exists.
         if (!pushRequestApiCall.getVisits().isEmpty() || !pushRequestApiCall.getPersons().isEmpty() || !pushRequestApiCall.getPatients().isEmpty() || !pushRequestApiCall.getEncounters().isEmpty()) {
             Single<PushResponseApiCall> pushResponseApiCallObservable = AppConstants.apiInterface.PUSH_RESPONSE_API_CALL_OBSERVABLE(url, "Basic " + encoded, pushRequestApiCall);
@@ -355,7 +357,7 @@ public class SyncDAO {
                             for (int i = 0; i < pushResponseApiCall.getData().getPatientlist().size(); i++) {
                                 try {
                                     patientsDAO.updateOpemmrsId(pushResponseApiCall.getData().getPatientlist().get(i).getOpenmrsId(), pushResponseApiCall.getData().getPatientlist().get(i).getSyncd().toString(), pushResponseApiCall.getData().getPatientlist().get(i).getUuid());
-                                    Log.d("SYNC", "ProvUUDI" + pushResponseApiCall.getData().getPatientlist().get(i).getUuid());
+                                    Log.d("SYNC", "ProvUUDI" + pushResponseApiCall.getData().getPatientlist().get(i).getUuid()+"---->>>>>"+pushResponseApiCall.getData().getPatientlist().get(i).getOpenmrsId());
                                 } catch (DAOException e) {
                                     Crashlytics.getInstance().core.logException(e);
                                 }

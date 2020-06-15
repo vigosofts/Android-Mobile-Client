@@ -174,6 +174,11 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
             ImageView imageView = convertView.findViewById(R.id.expandable_list_item_image);
 
+           /* if ( this.mContext instanceof PhysicalExamActivity ) {
+                ((PhysicalExamActivity) mContext).visibleFabButton();
+
+            }*/
+
             switch (callingClass) {
 
                 case "ComplaintNodeActivity":

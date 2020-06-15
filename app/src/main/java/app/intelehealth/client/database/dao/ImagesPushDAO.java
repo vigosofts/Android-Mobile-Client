@@ -118,6 +118,7 @@ public class ImagesPushDAO {
                         @Override
                         public void onComplete() {
                             Logger.logD(TAG, "success");
+
                             try {
                                 imagesDAO.updateUnsyncedObsImages(p.getUuid());
                             } catch (DAOException e) {

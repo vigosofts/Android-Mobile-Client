@@ -68,6 +68,7 @@ public class PhysicalExamActivity extends AppCompatActivity {
     String state;
     String patientName;
     String intentTag;
+    FloatingActionButton fab;
 
     ArrayList<String> selectedExamsList;
 
@@ -200,7 +201,9 @@ public class PhysicalExamActivity extends AppCompatActivity {
             tabLayout.setupWithViewPager(mViewPager);
         }
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+
+         fab = findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,6 +260,19 @@ public class PhysicalExamActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+
+    void visibleFabButton(){
+
+        if( physicalExamMap.areRequiredAnswered()){
+            fab.show();
+
+        }
+        else{
+            fab.hide();
+        }
 
     }
 

@@ -155,17 +155,25 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+        setContentView(R.layout.activity_camera);
+
+
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
+
             if (extras.containsKey(SET_IMAGE_NAME))
                 mImageName = extras.getString(SET_IMAGE_NAME);
             if (extras.containsKey(SHOW_DIALOG_MESSAGE))
                 mDialogMessage = extras.getString(SHOW_DIALOG_MESSAGE);
             if (extras.containsKey(SET_IMAGE_PATH))
-                mFilePath = extras.getString(SET_IMAGE_PATH);
+
+                    mFilePath = extras.getString(SET_IMAGE_PATH);
+
         }
 
-        setContentView(R.layout.activity_camera);
         mCameraView = findViewById(R.id.camera_surface_CameraView);
         mFab = findViewById(R.id.take_picture);
 

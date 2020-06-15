@@ -326,6 +326,8 @@ public class VisitSummaryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.summary_home: {
 //                NavUtils.navigateUpFromSameTask(this);
+                unRegisterServices();
+                LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
                 Intent i = new Intent(this, HomeActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
@@ -339,6 +341,7 @@ public class VisitSummaryActivity extends AppCompatActivity {
                 }
                 return true;
             }
+
             case R.id.summary_sms: {
                 //     VisitSummaryActivityPermissionsDispatcher.sendSMSWithCheck(this);
                 return true;
@@ -382,6 +385,17 @@ public class VisitSummaryActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    private void unRegisterServices(){
+        if (downloadPrescriptionService != null) {
+            LocalBroadcastManager.getInstance(context).unregisterReceiver(downloadPrescriptionService);
+        }
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
 
 
@@ -1585,6 +1599,7 @@ public class VisitSummaryActivity extends AppCompatActivity {
         }
 
         // Generate an HTML document on the fly:
+        
         String fontFamilyFile = "";
         if (objClsDoctorDetails != null) {
             if (objClsDoctorDetails.getFontOfSign().toLowerCase().equalsIgnoreCase("youthness")) {
@@ -2473,13 +2488,7 @@ public class VisitSummaryActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (downloadPrescriptionService != null) {
-            LocalBroadcastManager.getInstance(context).unregisterReceiver(downloadPrescriptionService);
-        }
-        if (receiver != null) {
-            unregisterReceiver(receiver);
-        }
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        unRegisterServices();
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
