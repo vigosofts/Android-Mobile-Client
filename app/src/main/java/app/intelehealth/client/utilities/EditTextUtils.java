@@ -54,5 +54,4 @@ public class EditTextUtils {
             public void afterTextChanged(Editable s) { }
         });
     }
-
 }
