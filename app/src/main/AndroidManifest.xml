@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.intelehealth.client">
+    package="app.intelehealth.client" >
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -34,8 +34,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-
+        android:usesCleartextTraffic="true" >
+        <activity android:name=".activities.languageSelectActivity.LanguageSelectActivity"
+            android:label="@string/title_activity_select_language"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".activities.privacyNoticeActivity.PrivacyNotice_Activity"
             android:label="@string/title_activity_privacy_notice"
@@ -85,19 +89,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".activities.IntroActivity.IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activities.visitSummaryActivity.VisitSummaryActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_visit_summary"
             android:parentActivityName=".activities.homeActivity.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.homeActivity.HomeActivity" />
@@ -140,7 +142,7 @@
             android:name=".activities.searchPatientActivity.SearchPatientActivity"
             android:label="@string/title_activity_search_patient"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -162,7 +164,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activities.homeActivity.HomeActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.homeActivity.HomeActivity" />
@@ -176,7 +178,7 @@
             android:name=".activities.homeActivity.HomeActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.homeActivity.HomeActivity" />
@@ -200,7 +202,7 @@
 
         <service
             android:name=".utilities.OpenMRSAccountAuthenticatorService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -218,7 +220,7 @@
         <receiver
             android:name=".syncModule.BootCompleteReceiver"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -233,12 +235,12 @@
         <service android:name=".services.MyIntentService" />
         <service android:name=".services.LastSyncIntentService" />
         <service android:name=".services.UpdateDownloadPrescriptionService" /> <!-- Firebase Services -->
-        <service android:name=".services.firebase_services.MyFirebaseMessagingService">
+        <service android:name=".services.firebase_services.MyFirebaseMessagingService" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".services.firebase_services.MyFirebaseInstanceIdService">
+        <service android:name=".services.firebase_services.MyFirebaseInstanceIdService" >
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
