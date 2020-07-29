@@ -5,22 +5,31 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import app.intelehealth.client.R;
 import app.intelehealth.client.activities.IntroActivity.IntroActivity;
 import app.intelehealth.client.activities.searchPatientActivity.SearchPatientActivity;
 import app.intelehealth.client.activities.searchPatientActivity.SearchPatientAdapter;
+import app.intelehealth.client.app.IntelehealthApplication;
 import app.intelehealth.client.models.LanguagesModel;
 import app.intelehealth.client.utilities.Logger;
+import app.intelehealth.client.utilities.SessionManager;
 
 public class LanguageSelectActivity extends AppCompatActivity {
 
@@ -28,6 +37,7 @@ public class LanguageSelectActivity extends AppCompatActivity {
     RecyclerView language_rv;
     Button select_language_btn;
     private SelectLanguageAdapter selectLanguageAdapter;
+    String selected_language = "NA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +53,34 @@ public class LanguageSelectActivity extends AppCompatActivity {
         select_language_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LanguageSelectActivity.this, IntroActivity.class);
-                startActivity(intent);
+
+                if(selected_language.equals("NA"))
+                    Toast.makeText(LanguageSelectActivity.this,"Please select language first",Toast.LENGTH_LONG).show();
+                else
+                {
+                    //set default language
+                    //save language
+                    saveLocale(selected_language);
+                    final Locale myLocale = new Locale(selected_language);
+                    Locale.setDefault(myLocale);
+                    Resources res = getResources();
+                    DisplayMetrics dm = res.getDisplayMetrics();
+                    Configuration conf = res.getConfiguration();
+                    conf.locale = myLocale;
+                    res.updateConfiguration(conf, dm);
+
+                    Intent intent = new Intent(LanguageSelectActivity.this, IntroActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
-
     private void setupLanguages() {
-        LANGUAGES.add(new LanguagesModel("English",false));
-        LANGUAGES.add(new LanguagesModel("Hindi",false));
-        LANGUAGES.add(new LanguagesModel("Marathi",false));
-        LANGUAGES.add(new LanguagesModel("Odiya",false));
-        LANGUAGES.add(new LanguagesModel("Cebuano",false));
+        LANGUAGES.add(new LanguagesModel("English","en",false));
+        //LANGUAGES.add(new LanguagesModel("Hindi","hi",false));
+        //LANGUAGES.add(new LanguagesModel("Marathi","en",false));
+        LANGUAGES.add(new LanguagesModel("Odiya","or",false));
+        LANGUAGES.add(new LanguagesModel("Cebuano","cb",false));
     }
     private void initUiWidgets() {
         //setup toolbar
@@ -80,7 +106,7 @@ public class LanguageSelectActivity extends AppCompatActivity {
             Logger.logE("doquery", "doquery", e);
         }
     }
-    public void refreshLanguages(String language, boolean status)
+    public void refreshLanguages(String language, String language_spec,boolean status)
     {
         for (int i = 0; i < LANGUAGES.size(); i++)
         {
@@ -91,6 +117,23 @@ public class LanguageSelectActivity extends AppCompatActivity {
         }
         select_language_btn.setVisibility(View.VISIBLE);
         select_language_btn.setText("Select - "+language);
+        //refresh recyclerview
         setupLanguageRecyclerView();
+
+        selected_language = language_spec;
+
+    }
+    public void saveLocale(String lang) {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("Intelehealth", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(langPref, lang);
+        prefs.getAll();
+        editor.apply();
+
+        SessionManager sessionManager = null;
+        sessionManager = new SessionManager(IntelehealthApplication.getAppContext());
+        sessionManager.setCurrentLang(lang);
+
     }
 }

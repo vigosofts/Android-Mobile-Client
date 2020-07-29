@@ -52,7 +52,7 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
         holder.languageItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                languageSelectActivity.refreshLanguages(language.getLanguageName(),true);
+                languageSelectActivity.refreshLanguages(language.getLanguageName(),language.getLanguageSpec(),true);
             }
         });
     }
