@@ -77,8 +77,6 @@ public class LanguageSelectActivity extends AppCompatActivity {
     }
     private void setupLanguages() {
         LANGUAGES.add(new LanguagesModel("English","en",false));
-        //LANGUAGES.add(new LanguagesModel("Hindi","hi",false));
-        //LANGUAGES.add(new LanguagesModel("Marathi","en",false));
         LANGUAGES.add(new LanguagesModel("Odiya","or",false));
         LANGUAGES.add(new LanguagesModel("Cebuano","cb",false));
     }
