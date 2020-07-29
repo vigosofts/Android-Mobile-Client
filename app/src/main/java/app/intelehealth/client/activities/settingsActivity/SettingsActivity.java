@@ -54,6 +54,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * to reflect its new value.
      */
 
+    public static String TAG = "SettingsActivity : ";
     SessionManager sessionManager = null;
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener =
             new Preference.OnPreferenceChangeListener() {
@@ -123,15 +124,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * @see #sBindPreferenceSummaryToValueListener
      */
     private static void bindPreferenceSummaryToValue(Preference preference) {
+
+        Log.e(TAG,"bindPreferenceSummaryToValue Called...");
+        ListPreference listPreference = (ListPreference) preference;
+        int lngIndex = listPreference.findIndexOfValue(IntelehealthApplication.prefs.getString("Language","en"));
+        Log.e(TAG,"lngIndex : "+lngIndex);
+        Log.e(TAG,"listPreference.getEntries()[lngIndex] : "+listPreference.getEntries()[lngIndex]);
+        preference.setSummary(
+                lngIndex >= 0
+                        ? listPreference.getEntries()[lngIndex]
+                        : null);
+
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+        ((ListPreference) preference).setValueIndex(lngIndex);
 
+        //Log.e(TAG,"bindPreferenceSummaryToValue : ")
         // Trigger the listener immediately with the preference's
         // current value.
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+        /*sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+                        .getString(IntelehealthApplication.prefs.getString("Language","en"), ""));*/
     }
 
     public static void displayLoginDialog(Context context) {
@@ -226,7 +240,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         setTitle(R.string.menu_option_settings);
         sessionManager = new SessionManager(this);
         setupActionBar();
+
+
+
     }
+
 
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
@@ -428,13 +446,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //  bindPreferenceSummaryToValue(findPreference("OriyaLang"));
 
             lang_prefer = findPreference("hindiLang");
+
             lang_prefer.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newvalue) {
                     try {
                         // do whatever you want with new value
                         String stringValue = newvalue.toString();
-
+                        Log.e(TAG,"stringValue : "+stringValue);
                         if (preference instanceof ListPreference) {
                             // For list preferences, look up the correct display value in
                             // the preference's 'entries' list.

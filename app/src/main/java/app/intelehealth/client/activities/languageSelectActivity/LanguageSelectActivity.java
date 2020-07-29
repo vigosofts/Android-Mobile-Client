@@ -77,7 +77,7 @@ public class LanguageSelectActivity extends AppCompatActivity {
     }
     private void setupLanguages() {
         LANGUAGES.add(new LanguagesModel("English","en",false));
-        LANGUAGES.add(new LanguagesModel("Odiya","or",false));
+        LANGUAGES.add(new LanguagesModel("ରନ୍","or",false));
         LANGUAGES.add(new LanguagesModel("Cebuano","cb",false));
     }
     private void initUiWidgets() {
@@ -122,13 +122,8 @@ public class LanguageSelectActivity extends AppCompatActivity {
 
     }
     public void saveLocale(String lang) {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("Intelehealth", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(langPref, lang);
-        prefs.getAll();
-        editor.apply();
 
+        IntelehealthApplication.editor.putString("Language",lang).commit();
         SessionManager sessionManager = null;
         sessionManager = new SessionManager(IntelehealthApplication.getAppContext());
         sessionManager.setCurrentLang(lang);
