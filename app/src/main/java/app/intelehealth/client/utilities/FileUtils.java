@@ -53,6 +53,7 @@ public class FileUtils {
         Log.i(TAG, "Reading from file");
 
         try {
+            Log.e("CONFIG_FILE_PATH","path : "+context.getFilesDir().getAbsolutePath() + File.separator + File.separator + FILENAME);
             File myDir = new File(context.getFilesDir().getAbsolutePath() + File.separator + File.separator + FILENAME);
             FileInputStream fileIn = new FileInputStream(myDir);
             InputStreamReader InputRead = new InputStreamReader(fileIn);
@@ -77,6 +78,8 @@ public class FileUtils {
     }
 
     public static JSONObject encodeJSON(Context context, String fileName) {
+
+
         String raw_json = null;
         JSONObject encoded = null;
         try {

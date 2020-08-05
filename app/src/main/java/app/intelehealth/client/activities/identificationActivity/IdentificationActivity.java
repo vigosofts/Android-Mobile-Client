@@ -110,7 +110,7 @@ public class IdentificationActivity extends AppCompatActivity {
     private int mAgeYears = 0;
     private int mAgeMonths = 0;
     private int mAgeDays = 0;
-    private String country1;
+    private String country1,state;
     PatientsDAO patientsDAO = new PatientsDAO();
     EditText mFirstName;
     EditText mMiddleName;
@@ -239,15 +239,13 @@ public class IdentificationActivity extends AppCompatActivity {
         if (!sessionManager.getLicenseKey().isEmpty())
             hasLicense = true;
         //Check for license key and load the correct config file
-        try {
+        try
+        {
             JSONObject obj = null;
-            if (hasLicense) {
+            if (hasLicense)
                 obj = new JSONObject(FileUtils.readFileRoot(AppConstants.CONFIG_FILE_NAME, this)); //Load the config file
-
-            } else {
+            else
                 obj = new JSONObject(String.valueOf(FileUtils.encodeJSON(this, AppConstants.CONFIG_FILE_NAME)));
-
-            }
 
             //Display the fields on the Add Patient screen as per the config file
             if (obj.getBoolean("mFirstName")) {
@@ -345,8 +343,9 @@ public class IdentificationActivity extends AppCompatActivity {
             } else {
                 economicLayout.setVisibility(View.GONE);
             }
-            country1 = obj.getString("mCountry");
 
+            country1 = obj.getString("mCountry");
+            state = obj.getString("mState");
             if (country1.equalsIgnoreCase("India")) {
                 EditTextUtils.setEditTextMaxLength(10, mPhoneNum);
             } else if (country1.equalsIgnoreCase("Philippines")) {
@@ -378,48 +377,47 @@ public class IdentificationActivity extends AppCompatActivity {
             mImageView.setImageBitmap(BitmapFactory.decodeFile(patient1.getPatient_photo()));
 
         Resources res = getResources();
-        ArrayAdapter<CharSequence> countryAdapter = ArrayAdapter.createFromResource(this,
-                R.array.countries, R.layout.custom_spinner);
-        //countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mCountry.setAdapter(countryAdapter);
 
-        ArrayAdapter<CharSequence> casteAdapter = ArrayAdapter.createFromResource(this,
-                R.array.caste, R.layout.custom_spinner);
-        //countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Country
+        ArrayAdapter<CharSequence> countryAdapter = ArrayAdapter.createFromResource(this,R.array.countries, R.layout.custom_spinner);
+        mCountry.setAdapter(countryAdapter);
+        //Caste
+        ArrayAdapter<CharSequence> casteAdapter = ArrayAdapter.createFromResource(this, R.array.caste, R.layout.custom_spinner);
         mCaste.setAdapter(casteAdapter);
-        try {
+
+        try
+        {
             String economicLanguage = "economic_" + Locale.getDefault().getLanguage();
             int economics = res.getIdentifier(economicLanguage, "array", getApplicationContext().getPackageName());
-            if (economics != 0) {
-                economicStatusAdapter = ArrayAdapter.createFromResource(this,
-                        economics, R.layout.custom_spinner);
-            }
-            // countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            if (economics != 0)
+                economicStatusAdapter = ArrayAdapter.createFromResource(this, economics, R.layout.custom_spinner);
+
             mEconomicStatus.setAdapter(economicStatusAdapter);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Toast.makeText(this, "Economic values are missing", Toast.LENGTH_SHORT).show();
             Logger.logE("Identification", "#648", e);
         }
-        try {
+        try
+        {
             String educationLanguage = "education_" + Locale.getDefault().getLanguage();
             int educations = res.getIdentifier(educationLanguage, "array", getApplicationContext().getPackageName());
-            if (educations != 0) {
-                educationAdapter = ArrayAdapter.createFromResource(this,
-                        educations, R.layout.custom_spinner);
 
-            }
-            // countryAdapter.setDropDownViewResource(R.layout.custom_spinner);
+            if (educations != 0)
+                educationAdapter = ArrayAdapter.createFromResource(this,educations, R.layout.custom_spinner);
+
             mEducation.setAdapter(educationAdapter);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Toast.makeText(this, "Education values are missing", Toast.LENGTH_SHORT).show();
             Logger.logE("Identification", "#648", e);
         }
 
-
-        if (null == patientID_edit || patientID_edit.isEmpty()) {
+        if (null == patientID_edit || patientID_edit.isEmpty())
             generateUuid();
-
-        }
 
         // setting radio button automatically according to the databse when user clicks edit details
         if (patientID_edit != null) {
@@ -435,14 +433,15 @@ public class IdentificationActivity extends AppCompatActivity {
                     mGenderM.setChecked(false);
                 Log.v(TAG, "yes");
             }
+        }
 
-        }
-        if (mGenderM.isChecked()) {
+        if (mGenderM.isChecked())
             mGender = "M";
-        } else {
+        else
             mGender = "F";
-        }
-        if (patientID_edit != null) {
+
+        if (patientID_edit != null)
+        {
             // setting country according database
             mCountry.setSelection(countryAdapter.getPosition(String.valueOf(patient1.getCountry())));
 
@@ -450,10 +449,9 @@ public class IdentificationActivity extends AppCompatActivity {
                 mEducation.setSelection(0);
             else
                 mEducation.setSelection(educationAdapter != null ? educationAdapter.getPosition(patient1.getEducation_level()) : 0);
-            if (educationAdapter == null) {
-                Toast.makeText(context, "Education Level: " + patient1.getEducation_level(), Toast.LENGTH_LONG).show();
-            }
 
+            if (educationAdapter == null)
+                Toast.makeText(context, "Education Level: " + patient1.getEducation_level(), Toast.LENGTH_LONG).show();
 
             if (patient1.getEconomic_status().equals(getString(R.string.not_provided)))
                 mEconomicStatus.setSelection(0);
@@ -464,40 +462,11 @@ public class IdentificationActivity extends AppCompatActivity {
                 mCaste.setSelection(0);
             else
                 mCaste.setSelection(casteAdapter.getPosition(patient1.getCaste()));
-        } else {
+        }
+        else
+        {
             mCountry.setSelection(countryAdapter.getPosition(country1));
         }
-
-        ArrayAdapter<CharSequence> stateAdapter = ArrayAdapter.createFromResource(this, R.array.state_error, R.layout.custom_spinner);
-        //  stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mState.setAdapter(stateAdapter);
-
-        mState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String state = parent.getItemAtPosition(position).toString();
-                if (state.matches("Odisha")) {
-                    //Creating the instance of ArrayAdapter containing list of fruit names
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(IdentificationActivity.this,
-                            R.array.odisha_villages, R.layout.custom_spinner);
-                    mCity.setThreshold(1);//will start working from first character
-                    mCity.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                } else if (state.matches("Bukidnon")) {
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(IdentificationActivity.this,
-                            R.array.bukidnon_villages, R.layout.custom_spinner);
-                    mCity.setThreshold(1);//will start working from first character
-                    mCity.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                } else {
-                    mCity.setAdapter(null);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         mCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -510,13 +479,11 @@ public class IdentificationActivity extends AppCompatActivity {
                         // stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mState.setAdapter(stateAdapter);
                         // setting state according database when user clicks edit details
-
-                        if (patientID_edit != null) {
+                        if (patientID_edit != null)
                             mState.setSelection(stateAdapter.getPosition(String.valueOf(patient1.getState_province())));
-                        }
-//                        else {
-//                            mState.setSelection(stateAdapter.getPosition("Odisha"));
-//                        }
+                        else
+                            mState.setSelection(stateAdapter.getPosition(state));
+
 
                     } else if (country.matches("United States")) {
                         ArrayAdapter<CharSequence> stateAdapter = ArrayAdapter.createFromResource(IdentificationActivity.this,
@@ -554,6 +521,33 @@ public class IdentificationActivity extends AppCompatActivity {
 
             }
         });
+        mState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String state = parent.getItemAtPosition(position).toString();
+                if (state.matches("Odisha")) {
+                    //Creating the instance of ArrayAdapter containing list of fruit names
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(IdentificationActivity.this,
+                            R.array.odisha_villages, R.layout.custom_spinner);
+                    mCity.setThreshold(1);//will start working from first character
+                    mCity.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                } else if (state.matches("Bukidnon")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(IdentificationActivity.this,
+                            R.array.bukidnon_villages, R.layout.custom_spinner);
+                    mCity.setThreshold(1);//will start working from first character
+                    mCity.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                } else {
+                    mCity.setAdapter(null);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         mGenderF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
